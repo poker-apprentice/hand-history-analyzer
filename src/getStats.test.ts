@@ -47,6 +47,19 @@ describe('getStats', () => {
       ],
     };
 
+    expect(getStats({ handHistory, playerName: 'John' })).toMatchInlineSnapshot(`
+      {
+        "aggressiveActionCount": 1,
+        "totalActionCount": 1,
+        "totalPot": "57.4",
+        "totalRake": "0.5",
+        "totalRakeContributed": "0",
+        "totalWon": "-2.5",
+        "vpip": true,
+        "wentToShowdown": false,
+      }
+    `);
+
     expect(getStats({ handHistory, playerName: 'Mike' })).toMatchInlineSnapshot(`
       {
         "aggressiveActionCount": 3,
@@ -56,6 +69,7 @@ describe('getStats', () => {
         "totalRakeContributed": "0.5",
         "totalWon": "30.45",
         "vpip": true,
+        "wentToShowdown": true,
       }
     `);
 
@@ -68,6 +82,7 @@ describe('getStats', () => {
         "totalRakeContributed": "0",
         "totalWon": "-26.95",
         "vpip": true,
+        "wentToShowdown": true,
       }
     `);
   });

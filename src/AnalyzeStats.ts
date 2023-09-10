@@ -47,6 +47,7 @@ export class AnalyzeStats {
       totalRakeContributed: this.totalRakeContributedByPlayer.toString(),
       totalWon: this.totalWonByPlayer.toString(),
       vpip: this.vpip,
+      wentToShowdown: this.wentToShowdown,
     };
   }
 
@@ -110,6 +111,12 @@ export class AnalyzeStats {
     return round(
       this.totalRake.times(this.chipsAwardedToPlayer.div(this.chipsAwardedToEveryone)),
       this.handHistory.info.currency,
+    );
+  }
+
+  private get wentToShowdown() {
+    return this.currentPlayerActions.some(
+      (action) => action.type === 'showdown' || action.type === 'muck',
     );
   }
 }

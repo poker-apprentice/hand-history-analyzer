@@ -29,4 +29,8 @@ export interface HandHistoryStats {
    * Whether the player voluntarily put chips into the pot.
    */
   vpip: boolean;
+  /**
+   * Whether the player went to showdown.
+   */
+  wentToShowdown: boolean;
 }
