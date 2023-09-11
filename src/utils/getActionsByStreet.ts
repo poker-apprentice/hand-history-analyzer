@@ -1,7 +1,9 @@
 import type { Action, Street } from '@poker-apprentice/hand-history-parser';
 
-export const getActionsByStreet = (actions: Action[]) => {
-  const actionsByStreet: Record<Street, Action[]> = {
+export type ActionsByStreet = Record<Street, Action[]>;
+
+export const getActionsByStreet = (actions: Action[]): ActionsByStreet => {
+  const actionsByStreet: ActionsByStreet = {
     preflop: [],
     flop: [],
     turn: [],

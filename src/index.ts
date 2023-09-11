@@ -1,3 +1,2 @@
-export { getStats } from './getStats';
-export type { GetStatsOptions } from './getStats';
+export { analyzeHand } from './analyzeHand';
 export * from './types';
