@@ -1,11 +1,10 @@
 import { HandHistory } from '@poker-apprentice/hand-history-parser';
 import mapValues from 'lodash/mapValues';
 import pick from 'lodash/pick';
+import { InvalidDataError } from './errors/InvalidDataError';
 import { HandHistoryStats, HandStats, PlayerStats } from './types';
 import { applyAction, getInitialState } from './utils/applyAction';
 import { calculateAggregates } from './utils/calculateAggregates';
-
-class InvalidDataError extends Error {}
 
 export const analyzeHand = ({ actions, info, players }: HandHistory): HandHistoryStats => {
   const heroes = players.filter((player) => player.isHero);
