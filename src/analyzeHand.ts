@@ -1,6 +1,6 @@
 import { HandHistory } from '@poker-apprentice/hand-history-parser';
 import mapValues from 'lodash/mapValues';
-import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
 import { InvalidDataError } from './errors/InvalidDataError';
 import { HandHistoryStats, HandStats, PlayerStats } from './types';
 import { applyAction, getInitialState } from './utils/applyAction';
@@ -11,14 +11,11 @@ import { calculateAggregates } from './utils/calculateAggregates';
  *
  * @throws {@link InvalidDataError} if number of `players` flagged as `isHero` !== 1
  */
-export const analyzeHand = ({ actions, info, players }: HandHistory): HandHistoryStats => {
+export const analyzeHand = ({ actions, players }: HandHistory): HandHistoryStats => {
   const heroes = players.filter((player) => player.isHero);
   if (heroes.length !== 1) {
     throw new InvalidDataError('Hand histories should only involve one hero.');
   }
-
-  // TODO: include a boolean that provides this in `@poker-apprentice/hand-history-parser`
-  const isAnonymous = info.site === 'bovada';
 
   // generate a default set of values for hand & player stats
   let state = getInitialState(players);
@@ -45,8 +42,12 @@ export const analyzeHand = ({ actions, info, players }: HandHistory): HandHistor
     totalWon: playerStat.totalWon.toString(),
   }));
 
+  const knownPlayers = new Set(
+    players.filter((player) => !player.isAnonymous).map((player) => player.name),
+  );
+
   return {
     hand: handStats,
-    players: isAnonymous ? pick(playerStats, heroes[0].name) : playerStats,
+    players: pickBy(playerStats, (_stats, name) => knownPlayers.has(name)),
   };
 };

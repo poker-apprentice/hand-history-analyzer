@@ -8,6 +8,7 @@ describe('analyzeHand', () => {
     players: handHistory.players.map((player) => ({
       ...player,
       isHero: player.name === playerName,
+      isAnonymous: player.name !== playerName,
     })),
   });
 

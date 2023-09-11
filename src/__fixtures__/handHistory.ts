@@ -12,9 +12,30 @@ export const bovadaHandHistory: HandHistory = {
     timestamp: new Date(),
   },
   players: [
-    { name: 'John', seatNumber: 1, position: 'BTN', chipStack: '49.50', isHero: false },
-    { name: 'Carl', seatNumber: 2, position: 'SB', chipStack: '27.45', isHero: false },
-    { name: 'Mike', seatNumber: 3, position: 'BB', chipStack: '87.25', isHero: true },
+    {
+      name: 'John',
+      seatNumber: 1,
+      position: 'BTN',
+      chipStack: '49.50',
+      isHero: false,
+      isAnonymous: true,
+    },
+    {
+      name: 'Carl',
+      seatNumber: 2,
+      position: 'SB',
+      chipStack: '27.45',
+      isHero: false,
+      isAnonymous: true,
+    },
+    {
+      name: 'Mike',
+      seatNumber: 3,
+      position: 'BB',
+      chipStack: '87.25',
+      isHero: true,
+      isAnonymous: false,
+    },
   ],
   actions: [
     { type: 'deal-board', street: 'preflop', cards: [] },
