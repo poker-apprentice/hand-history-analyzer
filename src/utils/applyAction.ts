@@ -12,39 +12,14 @@ import {
   RaiseAction,
   ReturnBetAction,
   ShowdownAction,
-  Street,
 } from '@poker-apprentice/hand-history-parser';
 import assertNever from 'assert-never';
 import BigNumber from 'bignumber.js';
 import merge from 'lodash/merge';
-import { HandStats, PlayerStats, StreetStat } from '../types';
+import { StreetStat } from '~/types';
+import { AllPlayerStatsState, PlayerStatsState, State } from '~/types/State';
 
-interface CalculatedHandStats extends Omit<HandStats, 'totalPot' | 'totalRake'> {
-  totalPot: BigNumber;
-  totalRake: BigNumber;
-}
-
-interface CalculatedPlayerStats
-  extends Omit<
-    PlayerStats,
-    'totalAwarded' | 'totalContributed' | 'totalRakeContributed' | 'totalWon'
-  > {
-  totalAwarded: BigNumber;
-  totalContributed: BigNumber;
-  totalRakeContributed: BigNumber;
-  totalWon: BigNumber;
-}
-
-type AllCalculatedPlayerStats = Record<string, CalculatedPlayerStats>;
-
-export interface CalculatedState {
-  currentStreet: Street;
-  currentStreetRaiseCount: number;
-  handStats: CalculatedHandStats;
-  playerStats: AllCalculatedPlayerStats;
-}
-
-export const getInitialState = (players: Player[] = []): CalculatedState => ({
+export const getInitialState = (players: Player[] = []): State => ({
   currentStreet: 'preflop',
   currentStreetRaiseCount: 1, // start at 1 preflop since the blinds count as the first bet
   handStats: {
@@ -64,7 +39,7 @@ export const getInitialState = (players: Player[] = []): CalculatedState => ({
         totalWon: new BigNumber(0),
         vpip: false,
         wentToShowdown: false,
-      } satisfies CalculatedPlayerStats,
+      } satisfies PlayerStatsState,
     ]),
   ),
 });
@@ -79,10 +54,10 @@ const defaultStreetStats: StreetStat = {
 };
 
 const updatePlayerStats = (
-  state: CalculatedState,
+  state: State,
   playerName: string,
-  callback: (stats: CalculatedPlayerStats) => Partial<CalculatedPlayerStats>,
-): AllCalculatedPlayerStats => {
+  callback: (stats: PlayerStatsState) => Partial<PlayerStatsState>,
+): AllPlayerStatsState => {
   const stats = state.playerStats[playerName];
   if (stats === undefined) {
     return state.playerStats;
@@ -94,17 +69,17 @@ const updatePlayerStats = (
 };
 
 interface ApplyOptions<TAction extends Action> {
-  state: CalculatedState;
+  state: State;
   action: TAction;
 }
 
-const applyDealBoard = ({ state, action }: ApplyOptions<DealBoardAction>): CalculatedState => ({
+const applyDealBoard = ({ state, action }: ApplyOptions<DealBoardAction>): State => ({
   ...state,
   currentStreet: action.street,
   currentStreetRaiseCount: 0,
 });
 
-const applyPost = ({ state, action }: ApplyOptions<PostAction>): CalculatedState => ({
+const applyPost = ({ state, action }: ApplyOptions<PostAction>): State => ({
   ...state,
   handStats: {
     ...state.handStats,
@@ -116,7 +91,7 @@ const applyPost = ({ state, action }: ApplyOptions<PostAction>): CalculatedState
   })),
 });
 
-const applyBet = ({ state, action }: ApplyOptions<BetAction>): CalculatedState => ({
+const applyBet = ({ state, action }: ApplyOptions<BetAction>): State => ({
   ...state,
   handStats: {
     ...state.handStats,
@@ -141,7 +116,7 @@ const applyBet = ({ state, action }: ApplyOptions<BetAction>): CalculatedState =
   ),
 });
 
-const applyCall = ({ state, action }: ApplyOptions<CallAction>): CalculatedState => ({
+const applyCall = ({ state, action }: ApplyOptions<CallAction>): State => ({
   ...state,
   handStats: {
     ...state.handStats,
@@ -166,7 +141,7 @@ const applyCall = ({ state, action }: ApplyOptions<CallAction>): CalculatedState
   ),
 });
 
-const applyCheck = ({ state, action }: ApplyOptions<CheckAction>): CalculatedState => ({
+const applyCheck = ({ state, action }: ApplyOptions<CheckAction>): State => ({
   ...state,
   playerStats: updatePlayerStats(state, action.playerName, ({ streets, totalActionCount }) => ({
     totalActionCount: totalActionCount + 1,
@@ -180,7 +155,7 @@ const applyCheck = ({ state, action }: ApplyOptions<CheckAction>): CalculatedSta
   })),
 });
 
-const applyFold = ({ state, action }: ApplyOptions<FoldAction>): CalculatedState => ({
+const applyFold = ({ state, action }: ApplyOptions<FoldAction>): State => ({
   ...state,
   playerStats: updatePlayerStats(state, action.playerName, ({ streets, totalActionCount }) => ({
     totalActionCount: totalActionCount + 1,
@@ -194,7 +169,7 @@ const applyFold = ({ state, action }: ApplyOptions<FoldAction>): CalculatedState
   })),
 });
 
-const applyRaise = ({ state, action }: ApplyOptions<RaiseAction>): CalculatedState => ({
+const applyRaise = ({ state, action }: ApplyOptions<RaiseAction>): State => ({
   ...state,
   currentStreetRaiseCount: state.currentStreetRaiseCount + 1,
   handStats: {
@@ -224,7 +199,7 @@ const applyRaise = ({ state, action }: ApplyOptions<RaiseAction>): CalculatedSta
   ),
 });
 
-const applyReturnBet = ({ state, action }: ApplyOptions<ReturnBetAction>): CalculatedState => ({
+const applyReturnBet = ({ state, action }: ApplyOptions<ReturnBetAction>): State => ({
   ...state,
   handStats: {
     ...state.handStats,
@@ -236,21 +211,21 @@ const applyReturnBet = ({ state, action }: ApplyOptions<ReturnBetAction>): Calcu
   })),
 });
 
-const applyShowdown = ({ state, action }: ApplyOptions<ShowdownAction>): CalculatedState => ({
+const applyShowdown = ({ state, action }: ApplyOptions<ShowdownAction>): State => ({
   ...state,
   playerStats: updatePlayerStats(state, action.playerName, () => ({
     wentToShowdown: true,
   })),
 });
 
-const applyMuck = ({ state, action }: ApplyOptions<MuckAction>): CalculatedState => ({
+const applyMuck = ({ state, action }: ApplyOptions<MuckAction>): State => ({
   ...state,
   playerStats: updatePlayerStats(state, action.playerName, () => ({
     wentToShowdown: true,
   })),
 });
 
-const applyAwardPot = ({ state, action }: ApplyOptions<AwardPotAction>): CalculatedState => ({
+const applyAwardPot = ({ state, action }: ApplyOptions<AwardPotAction>): State => ({
   ...state,
   playerStats: updatePlayerStats(state, action.playerName, ({ totalAwarded, totalWon }) => ({
     totalAwarded: totalAwarded.plus(action.amount),
@@ -258,7 +233,7 @@ const applyAwardPot = ({ state, action }: ApplyOptions<AwardPotAction>): Calcula
   })),
 });
 
-export const applyAction = ({ state, action }: ApplyOptions<Action>): CalculatedState => {
+export const applyAction = ({ state, action }: ApplyOptions<Action>): State => {
   const { type } = action;
   switch (type) {
     case 'award-pot':

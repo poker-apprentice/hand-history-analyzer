@@ -6,6 +6,11 @@ import { HandHistoryStats, HandStats, PlayerStats } from './types';
 import { applyAction, getInitialState } from './utils/applyAction';
 import { calculateAggregates } from './utils/calculateAggregates';
 
+/**
+ * Parses a `HandHistory` object returned by `@poker-apprentice/hand-history-parser`.
+ *
+ * @throws {@link InvalidDataError} if number of `players` flagged as `isHero` !== 1
+ */
 export const analyzeHand = ({ actions, info, players }: HandHistory): HandHistoryStats => {
   const heroes = players.filter((player) => player.isHero);
   if (heroes.length !== 1) {

@@ -1,8 +1,8 @@
 import BigNumber from 'bignumber.js';
 import mapValues from 'lodash/mapValues';
-import { CalculatedState } from './applyAction';
+import { State } from './applyAction';
 
-const calculateTotalRake = (state: CalculatedState): BigNumber =>
+const calculateTotalRake = (state: State): BigNumber =>
   state.handStats.totalPot.minus(
     Object.values(state.playerStats).reduce(
       (acc, stats) => acc.plus(stats.totalAwarded),
@@ -10,13 +10,13 @@ const calculateTotalRake = (state: CalculatedState): BigNumber =>
     ),
   );
 
-const calculateTotalAwarded = (state: CalculatedState) =>
+const calculateTotalAwarded = (state: State) =>
   Object.values(state.playerStats).reduce(
     (acc, playerStats) => acc.plus(playerStats.totalAwarded),
     new BigNumber(0),
   );
 
-export const calculateAggregates = (state: CalculatedState): CalculatedState => {
+export const calculateAggregates = (state: State): State => {
   const totalRake = calculateTotalRake(state);
   const totalAwardedToEveryone = calculateTotalAwarded(state);
 

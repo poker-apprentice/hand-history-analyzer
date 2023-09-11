@@ -81,7 +81,18 @@ export interface PlayerStats {
   wentToShowdown: boolean;
 }
 
+/**
+ * Calculated stats based upon the hand history.
+ */
 export interface HandHistoryStats {
+  /**
+   * Analysis of the overall hand.
+   */
   hand: HandStats;
+  /**
+   * Analysis of each player involved in the hand, keyed by the player's username. This object will
+   * contain an entry for every player unless the site treats players as anonymous. In such cases,
+   * only the hero's username & data will be included.
+   */
   players: Record<string, PlayerStats>;
 }
