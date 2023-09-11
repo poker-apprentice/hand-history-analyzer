@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 import mapValues from 'lodash/mapValues';
-import { State } from './applyAction';
+import { State } from '~/types/State';
 
 const calculateTotalRake = (state: State): BigNumber =>
   state.handStats.totalPot.minus(
