@@ -1,11 +1,11 @@
 {
-  "name": "@poker-apprentice/hand-history-stats",
+  "name": "@poker-apprentice/hand-history-analyzer",
   "version": "0.0.0",
   "description": "Extract helpful statistics about a poker player's tendencies from a hand history",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
-  "repository": "https://github.com/poker-apprentice/hand-history-stats",
+  "repository": "https://github.com/poker-apprentice/hand-history-analyzer",
   "author": "Matt Huggins <matt.huggins@gmail.com>",
   "license": "MIT",
   "private": false,

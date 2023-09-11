@@ -1,3 +1,3 @@
-# `@poker-apprentice/hand-history-stats`
+# Hand History Analyzer
 
 TODO
