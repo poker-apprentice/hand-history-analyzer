@@ -21,6 +21,10 @@ export interface StreetStat {
    * The number of raises made by a player during a specific street.
    */
   raiseCount: number;
+  /**
+   * The number of times a player 2-bet, 3-bet, etc. during a specific street.
+   */
+  bets: { [nbet: number]: number };
 }
 
 export type StreetStats = Partial<Record<Street, StreetStat>>;

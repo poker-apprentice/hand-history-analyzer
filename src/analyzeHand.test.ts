@@ -25,6 +25,7 @@ describe('analyzeHand', () => {
               "streets": {
                 "flop": {
                   "betCount": 1,
+                  "bets": {},
                   "callCount": 0,
                   "checkCount": 0,
                   "foldCount": 0,
@@ -32,6 +33,9 @@ describe('analyzeHand', () => {
                 },
                 "preflop": {
                   "betCount": 0,
+                  "bets": {
+                    "2": 1,
+                  },
                   "callCount": 0,
                   "checkCount": 0,
                   "foldCount": 0,
@@ -39,6 +43,7 @@ describe('analyzeHand', () => {
                 },
                 "turn": {
                   "betCount": 1,
+                  "bets": {},
                   "callCount": 0,
                   "checkCount": 0,
                   "foldCount": 0,
@@ -69,6 +74,9 @@ describe('analyzeHand', () => {
               "streets": {
                 "preflop": {
                   "betCount": 0,
+                  "bets": {
+                    "1": 1,
+                  },
                   "callCount": 0,
                   "checkCount": 0,
                   "foldCount": 1,
@@ -99,6 +107,7 @@ describe('analyzeHand', () => {
               "streets": {
                 "flop": {
                   "betCount": 0,
+                  "bets": {},
                   "callCount": 1,
                   "checkCount": 1,
                   "foldCount": 0,
@@ -106,6 +115,7 @@ describe('analyzeHand', () => {
                 },
                 "preflop": {
                   "betCount": 0,
+                  "bets": {},
                   "callCount": 2,
                   "checkCount": 0,
                   "foldCount": 0,
@@ -113,6 +123,7 @@ describe('analyzeHand', () => {
                 },
                 "turn": {
                   "betCount": 0,
+                  "bets": {},
                   "callCount": 1,
                   "checkCount": 1,
                   "foldCount": 0,

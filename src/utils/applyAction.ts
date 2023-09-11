@@ -44,9 +44,9 @@ export interface CalculatedState {
   playerStats: AllCalculatedPlayerStats;
 }
 
-export const getInitialState = (players: Player[]): CalculatedState => ({
+export const getInitialState = (players: Player[] = []): CalculatedState => ({
   currentStreet: 'preflop',
-  currentStreetRaiseCount: 0,
+  currentStreetRaiseCount: 1, // start at 1 preflop since the blinds count as the first bet
   handStats: {
     totalPot: new BigNumber(0),
     totalRake: new BigNumber(0),
@@ -75,6 +75,7 @@ const defaultStreetStats: StreetStat = {
   checkCount: 0,
   foldCount: 0,
   raiseCount: 0,
+  bets: {},
 };
 
 const updatePlayerStats = (
@@ -213,6 +214,10 @@ const applyRaise = ({ state, action }: ApplyOptions<RaiseAction>): CalculatedSta
           ...defaultStreetStats,
           ...streets[state.currentStreet],
           raiseCount: (streets[state.currentStreet]?.raiseCount ?? 0) + 1,
+          bets: {
+            ...streets[state.currentStreet]?.bets,
+            [state.currentStreetRaiseCount + 1]: 1,
+          },
         },
       },
     }),
