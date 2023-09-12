@@ -4,7 +4,7 @@ const commonjs = require('@rollup/plugin-commonjs');
 const resolve = require('@rollup/plugin-node-resolve');
 const terser = require('@rollup/plugin-terser');
 
-const extensions = ['.js', '.ts'];
+const extensions = ['.mjs', '.js', '.json', '.node', '.ts'];
 
 const env = process.env.NODE_ENV ?? 'development';
 
@@ -32,8 +32,6 @@ module.exports = {
     {
       dir: 'dist/esm',
       format: 'es',
-      preserveModules: true,
-      preserveModulesRoot: 'src',
       sourcemap: env === 'production' ? true : 'inline',
     },
   ],
