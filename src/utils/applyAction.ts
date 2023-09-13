@@ -6,7 +6,6 @@ import {
   CheckAction,
   DealBoardAction,
   FoldAction,
-  MuckAction,
   Player,
   PostAction,
   RaiseAction,
@@ -218,13 +217,6 @@ const applyShowdown = ({ state, action }: ApplyOptions<ShowdownAction>): State =
   })),
 });
 
-const applyMuck = ({ state, action }: ApplyOptions<MuckAction>): State => ({
-  ...state,
-  playerStats: updatePlayerStats(state, action.playerName, () => ({
-    wentToShowdown: true,
-  })),
-});
-
 const applyAwardPot = ({ state, action }: ApplyOptions<AwardPotAction>): State => ({
   ...state,
   playerStats: updatePlayerStats(state, action.playerName, ({ totalAwarded, totalWon }) => ({
@@ -248,8 +240,6 @@ export const applyAction = ({ state, action }: ApplyOptions<Action>): State => {
       return applyDealBoard({ state, action });
     case 'fold':
       return applyFold({ state, action });
-    case 'muck':
-      return applyMuck({ state, action });
     case 'post':
       return applyPost({ state, action });
     case 'raise':
@@ -258,8 +248,6 @@ export const applyAction = ({ state, action }: ApplyOptions<Action>): State => {
       return applyReturnBet({ state, action });
     case 'showdown':
       return applyShowdown({ state, action });
-    case 'board':
-      return state;
     case 'deal-hand':
       return state;
     default:

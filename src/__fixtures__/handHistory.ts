@@ -59,8 +59,8 @@ export const bovadaHandHistory: HandHistory = {
     { type: 'call', playerName: 'Carl', amount: '9.95', isAllIn: true },
     { type: 'return-bet', playerName: 'Mike', amount: '10.05' },
     { type: 'deal-board', street: 'river', cards: ['7s'] },
-    { type: 'showdown', playerName: 'Mike', handStrength: HandStrength.OnePair },
-    { type: 'muck', playerName: 'Carl' },
-    { type: 'award-pot', playerName: 'Mike', amount: '56.9', isSidePot: false },
+    { type: 'showdown', playerName: 'Mike', handStrength: HandStrength.OnePair, mucked: true },
+    { type: 'showdown', playerName: 'Carl', handStrength: HandStrength.OnePair, mucked: false },
+    { type: 'award-pot', playerName: 'Carl', amount: '56.9', isSidePot: false },
   ],
 };

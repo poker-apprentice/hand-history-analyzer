@@ -1350,17 +1350,15 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@poker-apprentice/hand-history-parser@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@poker-apprentice/hand-history-parser/-/hand-history-parser-1.1.4.tgz#58570bcca72772009e03e4fe9f624600d9122133"
-  integrity sha512-4O75rG338P6ehQVBEgmpyoi42IdoaIodrRkJR43pgx51lXdWorApiL5oJ6L4PGdy6C0IgWHlnY91s9U5f/yE9w==
+"@poker-apprentice/hand-history-parser@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@poker-apprentice/hand-history-parser/-/hand-history-parser-1.2.0.tgz#de5c598aae53a80b7e91ef323ccd8a9bff2425fc"
+  integrity sha512-6nmRkXmi2P8MUs10qTjOWC71t4Z+Ve6vnDxZRnA/4j5BMuQNiU6Wz4v77sBNURPCGjlnGF4gDxYPl1d+CkfmGg==
   dependencies:
     "@babel/runtime" "^7.22.11"
     antlr4ts "^0.5.0-alpha.4"
     assert-never "^1.2.1"
     bignumber.js "^9.1.2"
-    lodash "^4.17.21"
-    typescript "^5.2.2"
 
 "@rollup/plugin-babel@^6.0.3":
   version "6.0.3"
