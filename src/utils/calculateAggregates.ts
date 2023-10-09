@@ -25,7 +25,9 @@ export const calculateAggregates = (state: State): State => {
     handStats: { ...state.handStats, totalRake },
     playerStats: mapValues(state.playerStats, (playerStats) => ({
       ...playerStats,
-      totalRakeContributed: totalRake.times(playerStats.totalAwarded.div(totalAwardedToEveryone)),
+      totalRakeContributed: totalAwardedToEveryone.eq(0)
+        ? new BigNumber(0)
+        : totalRake.times(playerStats.totalAwarded.div(totalAwardedToEveryone)),
     })),
   };
 };

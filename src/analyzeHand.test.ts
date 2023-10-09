@@ -22,7 +22,7 @@ describe('analyzeHand', () => {
           },
           "players": {
             "Mike": {
-              "aggressiveActionCount": 0,
+              "aggressiveActionCount": 3,
               "streets": {
                 "flop": {
                   "betCount": 1,
@@ -71,7 +71,7 @@ describe('analyzeHand', () => {
           },
           "players": {
             "John": {
-              "aggressiveActionCount": 0,
+              "aggressiveActionCount": 1,
               "streets": {
                 "preflop": {
                   "betCount": 0,

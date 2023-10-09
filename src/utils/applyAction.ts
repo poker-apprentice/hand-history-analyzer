@@ -99,7 +99,8 @@ const applyBet = ({ state, action }: ApplyOptions<BetAction>): State => ({
   playerStats: updatePlayerStats(
     state,
     action.playerName,
-    ({ streets, totalActionCount, totalContributed, totalWon }) => ({
+    ({ aggressiveActionCount, streets, totalActionCount, totalContributed, totalWon }) => ({
+      aggressiveActionCount: aggressiveActionCount + 1,
       totalActionCount: totalActionCount + 1,
       totalContributed: totalContributed.plus(action.amount),
       totalWon: totalWon.minus(action.amount),
@@ -178,7 +179,8 @@ const applyRaise = ({ state, action }: ApplyOptions<RaiseAction>): State => ({
   playerStats: updatePlayerStats(
     state,
     action.playerName,
-    ({ streets, totalActionCount, totalContributed, totalWon }) => ({
+    ({ aggressiveActionCount, streets, totalActionCount, totalContributed, totalWon }) => ({
+      aggressiveActionCount: aggressiveActionCount + 1,
       totalActionCount: totalActionCount + 1,
       totalContributed: totalContributed.plus(action.amount),
       totalWon: totalWon.minus(action.amount),
