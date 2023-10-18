@@ -4,11 +4,12 @@ export const bovadaHandHistory: HandHistory = {
   info: {
     blinds: ['0.5', '1'],
     currency: 'USD',
-    game: 'holdem',
+    variant: 'holdem',
     handNumber: '12345',
     isFastFold: false,
-    limit: 'no limit',
+    bettingStructure: 'no limit',
     site: 'bovada',
+    tableSize: 6,
     timestamp: new Date(),
   },
   players: [
