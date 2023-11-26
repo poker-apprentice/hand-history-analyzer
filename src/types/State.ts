@@ -1,4 +1,4 @@
-import { Street } from '@poker-apprentice/hand-history-parser';
+import type { Street } from '@poker-apprentice/hand-history-parser';
 import BigNumber from 'bignumber.js';
 import { HandStats, PlayerStats } from '~/types';
 import { OmitStrict } from './OmitStrict';

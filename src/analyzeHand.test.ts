@@ -1,4 +1,4 @@
-import { HandHistory } from '@poker-apprentice/hand-history-parser';
+import type { HandHistory } from '@poker-apprentice/hand-history-parser';
 import { bovadaHandHistory } from './__fixtures__/handHistory';
 import { analyzeHand } from './analyzeHand';
 

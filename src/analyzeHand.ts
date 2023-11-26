@@ -1,4 +1,4 @@
-import { HandHistory } from '@poker-apprentice/hand-history-parser';
+import type { HandHistory } from '@poker-apprentice/hand-history-parser';
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
 import { InvalidDataError } from './errors/InvalidDataError';

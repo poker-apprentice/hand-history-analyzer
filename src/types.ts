@@ -1,4 +1,4 @@
-import { Street } from '@poker-apprentice/hand-history-parser';
+import type { Street } from '@poker-apprentice/hand-history-parser';
 
 export interface StreetStat {
   /**

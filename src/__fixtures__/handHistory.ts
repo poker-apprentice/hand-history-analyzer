@@ -1,4 +1,5 @@
-import { HandHistory, HandStrength } from '@poker-apprentice/hand-history-parser';
+import type { HandHistory } from '@poker-apprentice/hand-history-parser';
+import { HandStrength } from '@poker-apprentice/types';
 
 export const bovadaHandHistory: HandHistory = {
   info: {
