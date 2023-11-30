@@ -1350,16 +1350,17 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@poker-apprentice/hand-history-parser@^5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@poker-apprentice/hand-history-parser/-/hand-history-parser-5.0.2.tgz#56b21de9e03035e576ffa5d645b42c96b2637c2f"
-  integrity sha512-2YFZq/4arpA8Dt16fxGJAs7RzisyQHXZFd35Te59BRzy+noxTUAlUBuoToQMPbdu7NqtY/YARFGb/qBd+fpBQA==
+"@poker-apprentice/hand-history-parser@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@poker-apprentice/hand-history-parser/-/hand-history-parser-6.0.0.tgz#5768eec4f4229c7bce2f979c730d321d806a7541"
+  integrity sha512-NeHJ0SBZZYyJLUT+v5HZ2FnkYXiS9CRDXitHA5QCBSQDYr7ND+aQlZaB/2wIpzFi5N2iIjtP5enRdSZnQqjNGg==
   dependencies:
     "@babel/runtime" "^7.22.11"
     "@poker-apprentice/types" "^1.4.0"
     antlr4ts "^0.5.0-alpha.4"
     assert-never "^1.2.1"
     bignumber.js "^9.1.2"
+    lodash "^4.17.21"
 
 "@poker-apprentice/types@^1.4.0":
   version "1.4.0"
