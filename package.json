@@ -1,6 +1,6 @@
 {
   "name": "@poker-apprentice/hand-history-analyzer",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Extract helpful statistics about a poker player's tendencies from a hand history",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
