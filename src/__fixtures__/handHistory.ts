@@ -3,10 +3,12 @@ import { HandStrength } from '@poker-apprentice/types';
 
 export const bovadaHandHistory: HandHistory = {
   info: {
+    type: 'cash',
     blinds: ['0.5', '1'],
     currency: 'USD',
     variant: 'holdem',
     handNumber: '12345',
+    tableNumber: '1',
     isFastFold: false,
     bettingStructure: 'no limit',
     site: 'bovada',
@@ -17,6 +19,7 @@ export const bovadaHandHistory: HandHistory = {
     {
       name: 'John',
       seatNumber: 1,
+      positionIndex: 0,
       position: 'BTN',
       chipStack: '49.50',
       isHero: false,
@@ -25,6 +28,7 @@ export const bovadaHandHistory: HandHistory = {
     {
       name: 'Carl',
       seatNumber: 2,
+      positionIndex: 1,
       position: 'SB',
       chipStack: '27.45',
       isHero: false,
@@ -33,6 +37,7 @@ export const bovadaHandHistory: HandHistory = {
     {
       name: 'Mike',
       seatNumber: 3,
+      positionIndex: 2,
       position: 'BB',
       chipStack: '87.25',
       isHero: true,
@@ -64,5 +69,6 @@ export const bovadaHandHistory: HandHistory = {
     { type: 'showdown', playerName: 'Mike', handStrength: HandStrength.OnePair, mucked: true },
     { type: 'showdown', playerName: 'Carl', handStrength: HandStrength.OnePair, mucked: false },
     { type: 'award-pot', playerName: 'Carl', amount: '56.9', isSidePot: false },
+    { type: 'award-bounty', playerName: 'Carl', amount: '250' },
   ],
 };
