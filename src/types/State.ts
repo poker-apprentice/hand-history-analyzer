@@ -11,12 +11,13 @@ export interface HandStatsState extends Omit<HandStats, 'totalPot' | 'totalRake'
 export interface PlayerStatsState
   extends OmitStrict<
     PlayerStats,
-    'totalAwarded' | 'totalContributed' | 'totalRakeContributed' | 'totalWon'
+    'totalAwarded' | 'totalContributed' | 'totalRakeContributed' | 'totalWon' | 'bountiesWon'
   > {
   totalAwarded: BigNumber;
   totalContributed: BigNumber;
   totalRakeContributed: BigNumber;
   totalWon: BigNumber;
+  bountiesWon: BigNumber;
 }
 
 export type AllPlayerStatsState = Record<string, PlayerStatsState>;

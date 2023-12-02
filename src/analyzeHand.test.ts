@@ -23,6 +23,7 @@ describe('analyzeHand', () => {
           "players": {
             "Mike": {
               "aggressiveActionCount": 3,
+              "bountiesWon": "0",
               "streets": {
                 "flop": {
                   "betCount": 1,
@@ -72,6 +73,7 @@ describe('analyzeHand', () => {
           "players": {
             "John": {
               "aggressiveActionCount": 1,
+              "bountiesWon": "0",
               "streets": {
                 "preflop": {
                   "betCount": 0,
@@ -105,6 +107,7 @@ describe('analyzeHand', () => {
           "players": {
             "Carl": {
               "aggressiveActionCount": 0,
+              "bountiesWon": "250",
               "streets": {
                 "flop": {
                   "betCount": 0,

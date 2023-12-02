@@ -1,5 +1,6 @@
 import type {
   Action,
+  AwardBountyAction,
   AwardPotAction,
   BetAction,
   CallAction,
@@ -36,6 +37,7 @@ export const getInitialState = (players: Player[] = []): State => ({
         totalContributed: new BigNumber(0),
         totalRakeContributed: new BigNumber(0),
         totalWon: new BigNumber(0),
+        bountiesWon: new BigNumber(0),
         vpip: false,
         wentToShowdown: false,
       } satisfies PlayerStatsState,
@@ -227,9 +229,18 @@ const applyAwardPot = ({ state, action }: ApplyOptions<AwardPotAction>): State =
   })),
 });
 
+const applyAwardBounty = ({ state, action }: ApplyOptions<AwardBountyAction>): State => ({
+  ...state,
+  playerStats: updatePlayerStats(state, action.playerName, ({ bountiesWon }) => ({
+    bountiesWon: bountiesWon.plus(action.amount),
+  })),
+});
+
 export const applyAction = ({ state, action }: ApplyOptions<Action>): State => {
   const { type } = action;
   switch (type) {
+    case 'award-bounty':
+      return applyAwardBounty({ state, action });
     case 'award-pot':
       return applyAwardPot({ state, action });
     case 'bet':
@@ -251,6 +262,8 @@ export const applyAction = ({ state, action }: ApplyOptions<Action>): State => {
     case 'showdown':
       return applyShowdown({ state, action });
     case 'deal-hand':
+      return state;
+    case 'tournament-placement':
       return state;
     default:
       return assertNever(type);
