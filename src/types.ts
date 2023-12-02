@@ -68,7 +68,7 @@ export interface PlayerStats {
    */
   totalRakeContributed: string;
   /**
-   * The amount of chips won or lost by the player.
+   * The amount of chips won or lost by the player after accounting for chips contributed to the pot.
    */
   totalWon: string;
   /**
