@@ -5,6 +5,7 @@ export const bovadaHandHistory: HandHistory = {
   info: {
     type: 'cash',
     blinds: ['0.5', '1'],
+    ante: '0',
     currency: 'USD',
     variant: 'holdem',
     handNumber: '12345',
