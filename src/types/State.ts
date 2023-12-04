@@ -11,12 +11,18 @@ export interface HandStatsState extends Omit<HandStats, 'totalPot' | 'totalRake'
 export interface PlayerStatsState
   extends OmitStrict<
     PlayerStats,
-    'totalAwarded' | 'totalContributed' | 'totalRakeContributed' | 'totalWon' | 'bountiesWon'
+    | 'totalAwarded'
+    | 'totalContributed'
+    | 'totalRakeContributed'
+    | 'totalWon'
+    | 'tournamentPlacementPrize'
+    | 'bountiesWon'
   > {
   totalAwarded: BigNumber;
   totalContributed: BigNumber;
   totalRakeContributed: BigNumber;
   totalWon: BigNumber;
+  tournamentPlacementPrize: BigNumber;
   bountiesWon: BigNumber;
 }
 

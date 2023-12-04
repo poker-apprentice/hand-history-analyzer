@@ -40,6 +40,7 @@ export const analyzeHand = ({ actions, players }: HandHistory): HandHistoryStats
     totalContributed: playerStat.totalContributed.toString(),
     totalRakeContributed: playerStat.totalRakeContributed.toString(),
     totalWon: playerStat.totalWon.toString(),
+    tournamentPlacementPrize: playerStat.tournamentPlacementPrize.toString(),
     bountiesWon: playerStat.bountiesWon.toString(),
   }));
 

@@ -12,6 +12,7 @@ import type {
   RaiseAction,
   ReturnBetAction,
   ShowdownAction,
+  TournamentPlacementAward,
 } from '@poker-apprentice/hand-history-parser';
 import assertNever from 'assert-never';
 import BigNumber from 'bignumber.js';
@@ -37,6 +38,7 @@ export const getInitialState = (players: Player[] = []): State => ({
         totalContributed: new BigNumber(0),
         totalRakeContributed: new BigNumber(0),
         totalWon: new BigNumber(0),
+        tournamentPlacementPrize: new BigNumber(0),
         bountiesWon: new BigNumber(0),
         vpip: false,
         wentToShowdown: false,
@@ -236,6 +238,16 @@ const applyAwardBounty = ({ state, action }: ApplyOptions<AwardBountyAction>): S
   })),
 });
 
+const applyTournamentPlacementPrize = ({
+  state,
+  action,
+}: ApplyOptions<TournamentPlacementAward>): State => ({
+  ...state,
+  playerStats: updatePlayerStats(state, action.playerName, ({ tournamentPlacementPrize }) => ({
+    tournamentPlacementPrize: tournamentPlacementPrize.plus(action.amount),
+  })),
+});
+
 export const applyAction = ({ state, action }: ApplyOptions<Action>): State => {
   const { type } = action;
   switch (type) {
@@ -261,9 +273,10 @@ export const applyAction = ({ state, action }: ApplyOptions<Action>): State => {
       return applyReturnBet({ state, action });
     case 'showdown':
       return applyShowdown({ state, action });
-    case 'deal-hand':
-      return state;
+    case 'tournament-award':
+      return applyTournamentPlacementPrize({ state, action });
     case 'tournament-placement':
+    case 'deal-hand':
       return state;
     default:
       return assertNever(type);

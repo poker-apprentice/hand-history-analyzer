@@ -72,8 +72,13 @@ export interface PlayerStats {
    */
   totalWon: string;
   /**
-   * The value of any bounties won during the hand, where the denomination matches the currency
+   * The monetary value of any tournament prizes won, where the denomination matches the currency
    * represented by the associated game.
+   */
+  tournamentPlacementPrize: string;
+  /**
+   * The monetary value of any bounties won during the hand, where the denomination matches the
+   * currency represented by the associated game.
    */
   bountiesWon: string;
   /**
