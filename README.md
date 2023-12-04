@@ -36,6 +36,7 @@ The value returned is represented as a [`HandHistoryStats`](https://github.com/p
   "players": {
     "Mike": {
       "aggressiveActionCount": 0,
+      "bountiesWon": "0",
       "streets": {
         "flop": {
           "betCount": 1,
@@ -69,6 +70,7 @@ The value returned is represented as a [`HandHistoryStats`](https://github.com/p
       "totalContributed": "27.45",
       "totalRakeContributed": "0.5",
       "totalWon": "29.45",
+      "tournamentPlacementPrize": "0",
       "vpip": true,
       "wentToShowdown": true,
     },
